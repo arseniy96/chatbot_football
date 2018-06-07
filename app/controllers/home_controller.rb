@@ -12,7 +12,7 @@ class HomeController < ApplicationController
       self.fill = 'white'
       self.gravity = Magick::SouthEastGravity
     end
-    img.write('testcopyrighted.jpg')
+    img.write(Rails.root + 'public/testcopyrighted.jpg')
   end
 
 end
