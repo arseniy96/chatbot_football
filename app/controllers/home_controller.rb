@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  before_action :authenticate_admin!
 
   def index
     # img = Magick::Image.read(Rails.root + 'public/test.jpg').first
