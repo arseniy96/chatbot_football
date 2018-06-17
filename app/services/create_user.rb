@@ -15,7 +15,8 @@ module Services
         http.use_ssl = true
         response = http.request(Net::HTTP::Get.new(uri.request_uri))
         user_params = JSON.parse(response.body)['response'].first
-        User.create(vk_id: user_params['id'], firstname: user_params['first_name'], lastname: user_params['last_name'], avatar: user_params['photo_200'])
+        user_code = Faker::Internet.password(6, 10)
+        User.create(vk_id: user_params['id'], firstname: user_params['first_name'], lastname: user_params['last_name'], avatar: user_params['photo_200'], code: user_code)
       end
     end
 

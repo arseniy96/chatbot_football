@@ -65,6 +65,8 @@ GEM
     excon (0.62.0)
     execjs (2.7.0)
     extlib (0.9.16)
+    faker (1.8.7)
+      i18n (>= 0.7)
     faraday (0.15.2)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.25)
@@ -230,6 +232,7 @@ DEPENDENCIES
   byebug
   carrierwave (~> 1.0)
   coffee-rails (~> 4.2)
+  faker
   fog-google
   google-api-client (~> 0.8.6)
   jbuilder (~> 2.5)
