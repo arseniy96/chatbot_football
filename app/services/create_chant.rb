@@ -12,7 +12,7 @@ module Services
         self.fill = 'white'
         self.gravity = Magick::SouthEastGravity
       end
-      img_name = Time.now.to_i.to_s + user_id.to_s
+      img_name = (Time.now.to_i + user_id.to_i).to_s
       img.write(Rails.root + "public/#{img_name}.jpg")
       chant_image = File.open(Rails.root + "public/#{img_name}.jpg")
       user.chants.create(text: 'Blah', image: chant_image)
