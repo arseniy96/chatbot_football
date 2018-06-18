@@ -6,4 +6,9 @@ class User < ApplicationRecord
   has_many :chants
 
   mount_uploader :avatar, PosterUploader
+
+  def self.find_for_vkontakte_oauth access_token
+    Services::CreateVkUser.call(access_token)
+  end
+
 end
