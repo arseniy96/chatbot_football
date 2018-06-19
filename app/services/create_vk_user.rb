@@ -35,7 +35,7 @@ module Services
                      provider: access_token.provider,
                      firstname: access_token.info.first_name,
                      lastname: access_token.info.last_name,
-                     email: access_token.uid + access_token.user_code + '@vk.com',
+                     email: access_token.uid + user_code + '@vk.com',
                      password: password,
                      password_confirmation: password,
                      avatar: avatar_img,
