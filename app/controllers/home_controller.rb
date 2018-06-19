@@ -22,7 +22,7 @@ class HomeController < ApplicationController
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     response = http.request(Net::HTTP::Get.new(uri.request_uri))
-    response = JSON.parse(response.body).first
+    response = JSON.parse(response.body)
     if response['access_token']
       user = User.find_by(uid: user_id.to_s)
       if user
