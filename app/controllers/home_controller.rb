@@ -26,7 +26,7 @@ class HomeController < ApplicationController
     if response['access_token']
       @user = Services::CreateUser.call(response['user_id'])
       flash[:notice] = I18n.t "devise.omniauth_callbacks.success", kind: "Vkontakte"
-      sign_in_and_redirect root_path, event: :authentication
+      sign_in_and_redirect @user, event: :authentication
     else
       flash[:notice] = 'Ошибка'
       redirect_to root_path
