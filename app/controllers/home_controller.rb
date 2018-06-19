@@ -17,7 +17,17 @@ class HomeController < ApplicationController
   end
 
   def callback
-    redirect_to "https://oauth.vk.com/access_token?client_id=6609013&client_secret=7Pgv4022yLWmYlOzR0Ph&redirect_uri=https%3A%2F%2Ffootball-chatbot.herokuapp.com%2Fcallback&code=#{params[:code]}"
+    url = "https://oauth.vk.com/access_token?client_id=#{ENV['VK_APP_ID']}&client_secret=#{ENV['VK_APP_SECRET']}&redirect_uri=https%3A%2F%2Ffootball-chatbot.herokuapp.com%2Fcallback&code=#{params[:code]}"
+    uri = URI.parse(url)
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    response = http.request(Net::HTTP::Get.new(uri.request_uri))
+    user_params = JSON.parse(response.body)['response'].first
+    if user_params['access_token'].present?
+      @user = Services::CreateUser.call(user_params['user_id'])
+      flash[:notice] = I18n.t "devise.omniauth_callbacks.success", kind: "Vkontakte"
+      sign_in_and_redirect root_path, event: :authentication
+    end
   end
 
 end

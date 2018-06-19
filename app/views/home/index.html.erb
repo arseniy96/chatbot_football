@@ -4,3 +4,5 @@
 
   <%= f.submit %>
 <% end %>
+
+<%= current_user.firstname if user_signed_in? %>
