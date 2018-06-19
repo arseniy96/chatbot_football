@@ -2,7 +2,8 @@ module Services
   class CreateVkUser
 
     def self.call(access_token)
-      if User.where(uid: access_token.uid).first
+      user = User.where(uid: access_token.uid).first
+      if user
         user
       else
         user_code = Faker::Internet.password(6, 10)
