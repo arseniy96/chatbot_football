@@ -22,11 +22,14 @@ class HomeController < ApplicationController
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     response = http.request(Net::HTTP::Get.new(uri.request_uri))
-    user_params = JSON.parse(response.body)['response'].first
-    if user_params['access_token'].present?
-      @user = Services::CreateUser.call(user_params['user_id'])
+    response = JSON.parse(response.body).first
+    if response['access_token']
+      @user = Services::CreateUser.call(response['user_id'])
       flash[:notice] = I18n.t "devise.omniauth_callbacks.success", kind: "Vkontakte"
       sign_in_and_redirect root_path, event: :authentication
+    else
+      flash[:notice] = 'Ошибка'
+      redirect_to root_path
     end
   end
 

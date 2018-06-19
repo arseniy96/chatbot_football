@@ -4,7 +4,7 @@ module Services
     require 'uri'
 
     def self.call(user_id)
-      user = User.find_by(vk_id: user_id)
+      user = User.find_by(uid: user_id.to_s)
       if user
         return user
       else
