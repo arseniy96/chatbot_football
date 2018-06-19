@@ -33,7 +33,7 @@ module Services
         im.write(Rails.root + "public/#{img_name}.png")
         avatar_img = File.open(Rails.root + "public/#{img_name}.png")
 
-        User.create(uid: user_id,
+        User.create(uid: user_id.to_i,
                     provider: 'vkontakte',
                     firstname: user_params['first_name'],
                     lastname: user_params['last_name'],
