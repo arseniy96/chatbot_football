@@ -2,6 +2,7 @@ module Services
   class CreateUser
     require 'net/http'
     require 'uri'
+    require 'open-uri'
 
     def self.call(user_id)
       user = User.find_by(uid: user_id.to_s)
@@ -19,7 +20,9 @@ module Services
         response = http.request(Net::HTTP::Get.new(uri.request_uri))
         user_params = JSON.parse(response.body)['response'].first
 
-        im = Magick::Image.read('https:' + user_params['photo_200']).first
+        avatar_tmp = open(user_params['photo_200'])
+        IO.copy_stream(avatar_tmp, Rails.root + 'public/avatar_tmp.jpg')
+        im = Magick::Image.read(Rails.root + 'public/avatar_tmp.jpg').first
         circle = Magick::Image.new 200, 200
         gc = Magick::Draw.new
         gc.fill 'black'
