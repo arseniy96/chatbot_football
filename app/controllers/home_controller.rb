@@ -16,4 +16,8 @@ class HomeController < ApplicationController
     # img.write(Rails.root + 'public/testcopyrighted.jpg')
   end
 
+  def callback
+    redirect_to "https://oauth.vk.com/access_token?client_id=6609013&client_secret=7Pgv4022yLWmYlOzR0Ph&redirect_uri=https%3A%2F%2Ffootball-chatbot.herokuapp.com%2Fcallback&code=#{params[:code]}"
+  end
+
 end
