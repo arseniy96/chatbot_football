@@ -1,8 +1,7 @@
 module Services
   class CreateChant
 
-    def self.call(user_id)
-      user = CreateUser.call(user_id)
+    def self.call(user)
       img = Magick::Image.read(Rails.root + 'public/test.jpg').first
       copyright = Magick::Draw.new
       copyright.annotate(img, 0, 0, 100, 280, user.firstname) do
@@ -12,7 +11,7 @@ module Services
         self.fill = 'white'
         self.gravity = Magick::SouthEastGravity
       end
-      img_name = (Time.now.to_i + user_id.to_i).to_s
+      img_name = (Time.now.to_i + user.id.to_i).to_s
       img.write(Rails.root + "public/#{img_name}.jpg")
       chant_image = File.open(Rails.root + "public/#{img_name}.jpg")
       user.chants.create(text: 'Blah', image: chant_image)
