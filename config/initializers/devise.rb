@@ -257,16 +257,16 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  config.omniauth :vkontakte, ENV['VK_APP_ID'], ENV['VK_APP_SECRET'],
-                  {
-                      scope: 'friends,photos,groups',
-                      display: 'popup',
-                      lang: 'ru',
-                      https: 1,
-                      image_size: 'bigger_x2',
-                      redirect_url: 'https://football-chatbot.herokuapp.com/users/auth/vkontakte/callback',
-                      v: 5.80
-                  }
+  # config.omniauth :vkontakte, ENV['VK_APP_ID'], ENV['VK_APP_SECRET'],
+  #                 {
+  #                     scope: 'friends,photos,groups',
+  #                     display: 'popup',
+  #                     lang: 'ru',
+  #                     https: 1,
+  #                     image_size: 'bigger_x2',
+  #                     redirect_url: 'https://football-chatbot.herokuapp.com/users/auth/vkontakte/callback',
+  #                     v: 5.80
+  #                 }
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
