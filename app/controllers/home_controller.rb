@@ -13,7 +13,7 @@ class HomeController < ApplicationController
     response = http.request(Net::HTTP::Get.new(uri.request_uri))
     response = JSON.parse(response.body)
     if response['access_token']
-      @user = Services::CreateUser.call(response['user_id'], response['email'])
+      @user = Services::CreateUser.call(response['user_id'], response['email'], response['access_token'])
       flash[:notice] = I18n.t "devise.omniauth_callbacks.success", kind: "Vkontakte"
       sign_in_and_redirect @user, event: :authentication
     else

@@ -4,7 +4,7 @@ module Services
     require 'uri'
     require 'open-uri'
 
-    def self.call(user_id, email)
+    def self.call(user_id, email, token)
       user = User.find_by(uid: user_id.to_s)
       if user
         return user
@@ -36,8 +36,12 @@ module Services
         im.write(Rails.root + "public/#{img_name}.png")
         avatar_img = File.open(Rails.root + "public/#{img_name}.png")
 
-        User.create(uid: user_id.to_i,
+        user_groups = Services::GetGroups.call(user_id, token)
+        user_posts = Services::GetPosts.call(user_id, token)
+
+        User.create(uid: user_id,
                     provider: 'vkontakte',
+                    vk_token: token,
                     email: email,
                     password: password,
                     password_confirmation: password,
@@ -46,7 +50,9 @@ module Services
                     avatar: avatar_img,
                     code: user_code,
                     country: user_params['country'],
-                    sex: user_params['sex'])
+                    sex: user_params['sex'],
+                    groups: user_groups,
+                    posts: user_posts)
       end
     end
 
