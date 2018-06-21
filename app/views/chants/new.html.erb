@@ -1,0 +1,12 @@
+<%= form_for [current_user, @chant] do |f| %>
+  <p>
+    <%= f.label :country1 %><br/>
+    <%= f.text_field :country1 %>
+  </p>
+  <p>
+    <%= f.label :country2 %><br/>
+    <%= f.text_field :country2 %>
+  </p>
+
+  <%= f.submit 'Создать' %>
+<% end %>
