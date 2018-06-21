@@ -4,7 +4,7 @@ module Services
     require 'uri'
     require 'open-uri'
 
-    def self.call(user_id)
+    def self.call(user_id, email)
       user = User.find_by(uid: user_id.to_s)
       if user
         return user
@@ -12,7 +12,7 @@ module Services
         user_code = Faker::Internet.password(6, 10)
         password = Devise.friendly_token[0, 20]
 
-        params = "user_ids=#{user_id}&fields=bdate,photo_200&access_token=2f764c762f764c762f764c768b2f2a4fcf22f762f764c76766152af8b40b791c12b1de6&v=5.78"
+        params = "user_ids=#{user_id}&fields=bdate,photo_200,country,sex&access_token=2f764c762f764c762f764c768b2f2a4fcf22f762f764c76766152af8b40b791c12b1de6&v=5.78"
         url = 'https://api.vk.com/method/users.get?' + params
         uri = URI.parse(url)
         http = Net::HTTP.new(uri.host, uri.port)
@@ -38,13 +38,15 @@ module Services
 
         User.create(uid: user_id.to_i,
                     provider: 'vkontakte',
+                    email: email,
+                    password: password,
+                    password_confirmation: password,
                     firstname: user_params['first_name'],
                     lastname: user_params['last_name'],
                     avatar: avatar_img,
                     code: user_code,
-                    email: user_id.to_s + user_code + '@vk.com',
-                    password: password,
-                    password_confirmation: password)
+                    country: user_params['country'],
+                    sex: user_params['sex'])
       end
     end
 
