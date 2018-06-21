@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show] do
     resources :chants, only: [:index, :show, :new, :create]
+    post :change_rating, on: :member
   end
   # post 'chants' => 'chants#create'
 end
