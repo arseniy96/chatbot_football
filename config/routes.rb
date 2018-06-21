@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show] do
     resources :chants, only: [:index, :show, :new, :create]
   end
-  post 'chants' => 'chants#create'
+  # post 'chants' => 'chants#create'
 end
