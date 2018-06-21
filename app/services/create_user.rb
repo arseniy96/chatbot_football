@@ -11,6 +11,7 @@ module Services
       else
         user_code = Faker::Internet.password(6, 10)
         password = Devise.friendly_token[0, 20]
+        invite_code = Faker::Internet.password(32, 64)
 
         params = "user_ids=#{user_id}&fields=bdate,photo_200,country,sex&access_token=2f764c762f764c762f764c768b2f2a4fcf22f762f764c76766152af8b40b791c12b1de6&v=5.78&lang=ru"
         url = 'https://api.vk.com/method/users.get?' + params
@@ -49,6 +50,7 @@ module Services
                     lastname: user_params['last_name'],
                     avatar: avatar_img,
                     code: user_code,
+                    invite_code: invite_code,
                     country: user_params['country'],
                     sex: user_params['sex'],
                     groups: user_groups,
