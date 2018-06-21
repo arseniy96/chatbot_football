@@ -12,15 +12,14 @@ class HomeController < ApplicationController
     http.use_ssl = true
     response = http.request(Net::HTTP::Get.new(uri.request_uri))
     response = JSON.parse(response.body)
-    render json: response.as_json
-    # if response['access_token']
-    #   @user = Services::CreateUser.call(response['user_id'])
-    #   flash[:notice] = I18n.t "devise.omniauth_callbacks.success", kind: "Vkontakte"
-    #   sign_in_and_redirect @user, event: :authentication
-    # else
-    #   flash[:notice] = 'Ошибка'
-    #   redirect_to root_path
-    # end
+    if response['access_token']
+      @user = Services::CreateUser.call(response['user_id'])
+      flash[:notice] = I18n.t "devise.omniauth_callbacks.success", kind: "Vkontakte"
+      sign_in_and_redirect @user, event: :authentication
+    else
+      flash[:notice] = 'Ошибка'
+      redirect_to root_path
+    end
   end
 
 end
