@@ -1,1 +1,22 @@
 <%= image_tag(@chant.image.url) %>
+
+<% if !user_signed_in? && request.params['invite'] && User.find_by(invite_code: request.params['invite']) %>
+  <script>
+      window.localStorage.setItem('invite', '<%= @user.id %>');
+  </script>
+<% end %>
+<% if user_signed_in? && @chant == current_user.chants.first %>
+  <script>
+      if (window.localStorage.key('invite')) {
+          console.log('invite');
+          axios.post('/users/' + window.localStorage.getItem('invite') + '/change_rating')
+              .then(function (response) {
+                  console.log(response);
+              })
+              .catch(function (error) {
+                  console.log(error);
+              });
+          window.localStorage.clear();
+      }
+  </script>
+<% end %>
