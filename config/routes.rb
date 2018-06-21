@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'callback' => 'home#callback'
 
   resources :users, only: [:index, :show] do
-    resources :chants, only: [:index, :show]
+    resources :chants, only: [:index, :show, :new, :create]
   end
   post 'chants' => 'chants#create'
 end

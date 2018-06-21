@@ -1,2 +1,8 @@
-<%= current_user.firstname if user_signed_in? %>
-<%= image_tag(current_user.avatar.url) if user_signed_in? %>
+<% if user_signed_in? %>
+  <p><%= link_to 'Создать кричалку', new_user_chant_path(current_user) %></p>
+<% else %>
+  <p>
+    <a href="https://oauth.vk.com/authorize?client_id=6609013&display=popup&redirect_uri=https%3A%2F%2Ffootball-chatbot.herokuapp.com%2Fcallback&response_type=code&scope=friends%2Cphotos%2Cgroups&v=5.80">Создать
+      кричалку</a><br/>
+  </p>
+<% end %>

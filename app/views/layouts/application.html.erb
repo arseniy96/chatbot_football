@@ -12,10 +12,12 @@
 <p><%= flash[:notice] %></p>
 <%= link_to 'Выйти', destroy_admin_session_path, method: :delete if admin_signed_in? %><br/>
 <%= link_to "Выйти", destroy_user_session_path, method: :delete if user_signed_in? %><br/>
+<%= current_user.firstname if user_signed_in? %>
+<%= image_tag(current_user.avatar.url) if user_signed_in? %>
 <%# link_to 'Войти через ВК', user_vkontakte_omniauth_authorize_path %>
-<a href="https://oauth.vk.com/authorize?client_id=6609013&display=popup&redirect_uri=https%3A%2F%2Ffootball-chatbot.herokuapp.com%2Fcallback&response_type=code&scope=friends%2Cphotos%2Cgroups&v=5.80">Войти
-  через ВКонтакте</a><br/>
-<%= link_to 'Создать свою кричалку', chants_path, method: :post %><br/>
+<!--<a href="https://oauth.vk.com/authorize?client_id=6609013&display=popup&redirect_uri=https%3A%2F%2Ffootball-chatbot.herokuapp.com%2Fcallback&response_type=code&scope=friends%2Cphotos%2Cgroups&v=5.80">Войти-->
+  <!--через ВКонтакте</a><br/>-->
+<%# link_to 'Создать свою кричалку', chants_path, method: :post %><br/>
 <%= yield %>
 </body>
 </html>
