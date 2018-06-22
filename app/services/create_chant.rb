@@ -3,8 +3,9 @@ module Services
 
     def self.call(user, chant_params)
       chant_text = Services::GenerateTextForChant.call(user.firstname)
-
+      # main image
       img = Magick::Image.read(Rails.root + 'public/images/chant-w.jpg').first
+      # download avatar and save to local file
       if Rails.env == 'production'
         avatar_tmp = open(user.avatar.url)
         IO.copy_stream(avatar_tmp, Rails.root + 'public/chant_avatar_tmp.jpg')
@@ -13,8 +14,16 @@ module Services
         avatar = Magick::Image.read(Rails.root + 'public/avatar28test.png').first
       end
       avatar.resize_to_fit!(115, 115)
+      # first country image
+      fcountry = Magick::Image.read(Rails.root + 'public/images/country/arg.png').first
+      fcountry.resize!(120, 90)
+      # second country image
+      scountry = Magick::Image.read(Rails.root + 'public/images/country/ru.png').first
+      scountry.resize!(120, 90)
 
       img.composite!(avatar, 1567, 510, Magick::OverCompositeOp)
+      img.composite!(fcountry, 15, 630, Magick::OverCompositeOp)
+      img.composite!(scountry, 130, 630, Magick::OverCompositeOp)
 
       copyright = Magick::Draw.new
       copyright.annotate(img, 0, 0, 570, 370, chant_text) do
