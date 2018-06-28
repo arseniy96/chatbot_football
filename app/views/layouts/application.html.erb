@@ -1,24 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>ChatbotFootball</title>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width">
+  <meta property="og:title" content="Создай свою футбольную кричалку!"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:description" content="Поделись с друзьями, выиграй призы, заработай рейтинг!"/>
+  <% if @chant %>
+    <meta property="og:url" content="http://football.makemedia.agency<%= user_chant_path(@chant.user, @chant) %>"/>
+    <meta property="og:image" content="<%= @chant.image.url %>"/>
+  <% end %>
+  <title>Создай свою футбольную кричалку!</title>
 
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': false %>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/slick/slick.scss">
 </head>
 
 <body>
 <p><%= flash[:notice] %></p>
-<%= link_to 'Выйти', destroy_admin_session_path, method: :delete if admin_signed_in? %><br/>
-<%= link_to "Выйти", destroy_user_session_path, method: :delete if user_signed_in? %><br/>
-<%= current_user.firstname if user_signed_in? %>
-<%= image_tag(current_user.avatar.url) if user_signed_in? %>
+<%# link_to 'Выйти', destroy_admin_session_path, method: :delete if admin_signed_in? %>
+<%# link_to "Выйти", destroy_user_session_path, method: :delete if user_signed_in? %>
+<%# current_user.firstname if user_signed_in? %>
+<%# image_tag(current_user.avatar.url) if user_signed_in? %>
+
+
 <%# link_to 'Войти через ВК', user_vkontakte_omniauth_authorize_path %>
 <!--<a href="https://oauth.vk.com/authorize?client_id=6609013&display=popup&redirect_uri=https%3A%2F%2Ffootball-chatbot.herokuapp.com%2Fcallback&response_type=code&scope=friends%2Cphotos%2Cgroups&v=5.80">Войти-->
-  <!--через ВКонтакте</a><br/>-->
-<%# link_to 'Создать свою кричалку', chants_path, method: :post %><br/>
+<!--через ВКонтакте</a><br/>-->
+<%# link_to 'Создать свою кричалку', chants_path, method: :post %>
+
 <%= yield %>
+
+<%= javascript_include_tag 'custom/parallax.min' %>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+<script type="text/javascript" src='/slick/slick.min.js'></script>
+<%= javascript_include_tag 'custom/script' %>
 </body>
 </html>
