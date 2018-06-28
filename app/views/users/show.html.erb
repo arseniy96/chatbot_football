@@ -1,5 +1,5 @@
 <%= @user.full_name %>
-<%= link_to 'Создать свою кричалку', chants_path, method: :post, id: 'createChantViaFriend' %><br/>
+<%# link_to 'Создать свою кричалку', user_chants_path(), method: :post, id: 'createChantViaFriend' %><br/>
 
 <script>
   $('#createChantViaFriend').click(function(){window.localStorage.setItem('invite', '<%= @user.id %>')})
