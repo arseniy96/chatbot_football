@@ -1,8 +1,87 @@
-<% if user_signed_in? %>
-  <p><%= link_to 'Создать кричалку', new_user_chant_path(current_user) %></p>
-<% else %>
-  <p>
-    <a href="https://oauth.vk.com/authorize?client_id=6609013&display=popup&redirect_uri=https%3A%2F%2Ffootball-chatbot.herokuapp.com%2Fcallback&response_type=code&scope=friends%2Cphotos%2Cgroups%2Cemail&v=5.80">Создать
-      кричалку</a><br/>
-  </p>
-<% end %>
+<header>
+  <div id='bg_parallax'>
+    <div data-depth="0.1"></div>
+  </div>
+  <div id="parallax">
+    <img src='/images/footballer.png' class='footballer' data-depth="0.4" alt='Футболист'/>
+    <img src='/images/ball.png' class='ball_header' data-depth="0.4" alt='Мяч'/>
+  </div>
+  <div class='container'>
+    <div class='row justify-content-end align-items-end'>
+      <div class='col-lg-4 create'>
+        <h1>создай свою оригинальную <span>кричалку</span></h1>
+        <% if user_signed_in? %>
+          <%= link_to 'Создать', new_user_chant_path(current_user), class: 'button' %>
+        <% else %>
+          <a class="button" href="https://oauth.vk.com/authorize?client_id=6609013&display=popup&redirect_uri=https%3A%2F%2Ffootball-chatbot.herokuapp.com%2Fcallback&response_type=code&scope=friends%2Cphotos%2Cgroups%2Cemail&v=5.80">Создать</a>
+        <% end %>
+        <p>Создано в <a href='#'>ММА</a></p>
+      </div>
+    </div>
+  </div>
+</header>
+<section id='first'>
+  <div class='container'>
+    <div class='col-md-6 offset-md-3 create mobile_block'>
+      <h1>создай свою оригинальную <span>кричалку</span></h1>
+      <% if user_signed_in? %>
+        <%= link_to 'Создать', new_user_chant_path(current_user), class: 'button' %>
+      <% else %>
+        <a class="button" href="https://oauth.vk.com/authorize?client_id=6609013&display=popup&redirect_uri=https%3A%2F%2Ffootball-chatbot.herokuapp.com%2Fcallback&response_type=code&scope=friends%2Cphotos%2Cgroups%2Cemail&v=5.80">Создать</a>
+      <% end %>
+      <p>Создано в <a href='#'>ММА</a></p>
+    </div>
+    <h3>Новые пользователи</h3>
+    <div class='users_row'>
+      <% @new_users.each do |user| %>
+        <div class='photo_p'>
+          <%= link_to user_path(user) do %>
+            <%= image_tag(user.avatar.url, alt: 'Photo') %>
+            <div class="points"><%= user.rating || 0 %></div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <h3>Последние кричалки</h3>
+    <div class='slogan_slider'>
+      <% @chants.limit(40).each_slice(2) do |fchant, schant| %>
+        <div class='slogan_slide'>
+          <div class='slogan_link'>
+            <%= link_to user_chant_path(fchant.user, fchant) do %>
+              <%= image_tag(fchant.image.url) %>
+            <% end %>
+            <% if schant %>
+              <%= link_to user_chant_path(schant.user, schant) do %>
+                <%= image_tag(schant.image.url) %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <h3 class='no_margin'>рейтинг пользователей</h3>
+    <div class='row rating_con'>
+      <% @best_users.each_with_index do |user, i| %>
+        <div class='col-lg-6 offset-lg-3 rating'>
+          <div>
+            <div class='photo_p'>
+              <%= link_to user_path(user) do %>
+                <%= image_tag(user.avatar.url, alt: 'Photo') %>
+                <div class="points"><%= user.rating || 0 %></div>
+              <% end %>
+            </div>
+            <div class='text_p'>
+              <h2>
+                <%= link_to user.full_name, user_path(user) %>
+              </h2>
+            </div>
+            <div class='place'><%= i + 1 %></div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class='ball_footer'>
+      <img src='images/ball_footer.png' alt='Ball'/>
+    </div>
+  </div>
+</section>

@@ -2,7 +2,13 @@ class HomeController < ApplicationController
   # before_action :authenticate_admin!
 
   def index
-
+    # unless user_signed_in?
+    #   @user = Services::CreateUser.call(28833104, 'aa@bb.com', 'ab99173579e1ef34aa089605bdb5d07a5078ecbac4b69ba4db6e1d0196e655b0657bd34dfb9da23ff80f1')
+    #   sign_in_and_redirect @user, event: :authentication
+    # end
+    @chants = Chant.order('created_at DESC')
+    @best_users = User.order('rating').limit(10)
+    @new_users = User.order('created_at DESC').limit(8)
   end
 
   def callback
