@@ -9,12 +9,6 @@
   <div class='container'>
     <div class='row justify-content-end align-items-end'>
       <div class='col-lg-4 create'>
-        <h1>создай свою оригинальную <span>кричалку</span></h1>
-        <% if user_signed_in? %>
-          <%= link_to 'Создать', new_user_chant_path(current_user), class: 'button' %>
-        <% else %>
-          <a class="button" href="https://oauth.vk.com/authorize?client_id=6609013&display=popup&redirect_uri=https%3A%2F%2Ffootball-chatbot.herokuapp.com%2Fcallback&response_type=code&scope=friends%2Cphotos%2Cgroups%2Cemail&v=5.80">Создать</a>
-        <% end %>
         <p>Создано в <a href='#'>ММА</a></p>
       </div>
     </div>
@@ -22,6 +16,23 @@
 </header>
 <section id='first'>
   <div class='container'>
+    <div class='row justify-content-center align-items-center'>
+      <div class='col-lg-9 create'>
+        <h1 style="width: auto;">создай свою оригинальную кричалку</h1>
+        <% if user_signed_in? %>
+          <%= link_to 'Создать', new_user_chant_path(current_user), class: 'button', style: 'width: 40%' %>
+        <% else %>
+          <a class="button" href="https://oauth.vk.com/authorize?client_id=6609013&display=popup&redirect_uri=https%3A%2F%2Ffootball-chatbot.herokuapp.com%2Fcallback&response_type=code&scope=friends%2Cphotos%2Cgroups%2Cemail&v=5.80" style="width: 40%;">Создать</a>
+        <% end %>
+        <p>
+          Потребуется вход через социальную сеть Вконтакте. На основе анализа Вашего профиля будет создана
+          персонализированная кричалка. Поделитесь ею на своей странице, чтобы выиграть призы. Поделитесь с друзьями
+          своей персональной ссылкой. За каждого друга, который так же создаст кричалку, мы начислим Вам 1 балл.
+          Собиарайте баллы, взойдите на Олимп и получите призы!
+        </p>
+      </div>
+    </div>
+
     <div class='col-md-6 offset-md-3 create mobile_block'>
       <h1>создай свою оригинальную <span>кричалку</span></h1>
       <% if user_signed_in? %>
@@ -29,7 +40,6 @@
       <% else %>
         <a class="button" href="https://oauth.vk.com/authorize?client_id=6609013&display=popup&redirect_uri=https%3A%2F%2Ffootball-chatbot.herokuapp.com%2Fcallback&response_type=code&scope=friends%2Cphotos%2Cgroups%2Cemail&v=5.80">Создать</a>
       <% end %>
-      <p>Создано в <a href='#'>ММА</a></p>
     </div>
     <h3>Новые пользователи</h3>
     <div class='users_row'>
