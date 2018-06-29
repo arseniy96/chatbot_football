@@ -1,11 +1,44 @@
-<%= image_tag(@chant.image.url) %>
-<div class="a2a_kit a2a_kit_size_28 a2a_default_style">
-  <a class="a2a_button_vk"></a>
-  <a class="a2a_button_odnoklassniki"></a>
-  <a class="a2a_button_facebook"></a>
-  <a class="a2a_button_twitter"></a>
-</div>
-<script async src="https://static.addtoany.com/menu/page.js"></script>
+<section id='first'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-12 main_person'>
+        <div class='photo_p'>
+          <%= link_to user_path(@user) do %>
+            <%= image_tag(@user.avatar.url, alt: 'Photo') %>
+            <div class="points"><%= @user.rating || 0 %></div>
+          <% end %>
+        </div>
+        <div class='text_p'>
+          <h2><%= link_to @user.full_name, user_path(@user) %></h2>
+          <p>Создал<%= 'а' if @user.sex == '1' %> свою кричалку к чемпионату мира по футболу.</p>
+          <p>Пригласил<%= 'а' if @user.sex == '1' %>: <%= @user.rating %> чел.</p>
+        </div>
+      </div>
+      <div class='col-md-1 align-self-end'>
+        <%= link_to 'Скачать', @chant.image.url, download: "chant_#{@chant.id}", class: 'download_link' %>
+      </div>
+      <div class='col-lg-8 slogan'>
+					<pre><%= @chant.text %></pre>
+      </div>
+      <div class='col-lg-3 share align-self-end'>
+        <div class="a2a_kit a2a_kit_size_28 a2a_default_style"
+             data-a2a-title='Создай свою футбольную кричалку!'>
+          <a class="a2a_button_vk"><img src='/images/vk.png' alt='Вконтакте'/></a>
+          <a class="a2a_button_facebook"><img src='/images/fb.png' alt='Facebook'/></a>
+          <a class="a2a_button_twitter"><img src='/images/twi.png' alt='Twitter'/></a>
+          <a class="a2a_button_odnoklassniki"><img src='/images/ok.png' alt='Одноклассники'/></a>
+        </div>
+        <script async src="https://static.addtoany.com/menu/page.js"></script>
+        <div class='share_text'>
+          <p><span>Поделись</span></p>
+          <p>и выиграй призы</p>
+        </div>
+        <input type='text' id='clip_input'/>
+        <div class='copy' data-clipboard-target="#clip_input">copy</div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <% if !user_signed_in? && request.params['invite'] && User.find_by(invite_code: request.params['invite']) %>
   <script>

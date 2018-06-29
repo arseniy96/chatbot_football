@@ -8,6 +8,7 @@ class ChantsController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:user_id])
     @chant = Chant.find(params[:id])
     @user = User.find(params[:user_id])
   end
