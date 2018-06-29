@@ -19,7 +19,6 @@
 </head>
 
 <body>
-<p><%= flash[:notice] %></p>
 <%# link_to 'Выйти', destroy_admin_session_path, method: :delete if admin_signed_in? %>
 <%# link_to "Выйти", destroy_user_session_path, method: :delete if user_signed_in? %>
 <%# current_user.firstname if user_signed_in? %>
@@ -30,7 +29,22 @@
 <!--<a href="https://oauth.vk.com/authorize?client_id=6609013&display=popup&redirect_uri=https%3A%2F%2Ffootball-chatbot.herokuapp.com%2Fcallback&response_type=code&scope=friends%2Cphotos%2Cgroups&v=5.80">Войти-->
 <!--через ВКонтакте</a><br/>-->
 <%# link_to 'Создать свою кричалку', chants_path, method: :post %>
-
+<header>
+  <div id='bg_parallax'>
+    <div data-depth="0.1"></div>
+  </div>
+  <div id="parallax">
+    <img src='/images/footballer.png' class='footballer' data-depth="0.4" alt='Футболист'/>
+    <img src='/images/ball.png' class='ball_header' data-depth="0.4" alt='Мяч'/>
+  </div>
+  <div class='container'>
+    <div class='row justify-content-end align-items-end'>
+      <div class='col-lg-4 create'>
+        <p>Создано в <a href='#'>ММА</a></p>
+      </div>
+    </div>
+  </div>
+</header>
 <%= yield %>
 
 <%= javascript_include_tag 'custom/parallax.min' %>
