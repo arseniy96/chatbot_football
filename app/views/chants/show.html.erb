@@ -13,7 +13,7 @@
             <a href="https://vk.com/id<%= @user.uid %>" target="_blank"><%= @user.full_name %></a>
           </h2>
           <p>Создал<%= 'а' if @user.sex == '1' %> свою кричалку к чемпионату мира по футболу.</p>
-          <p>Пригласил<%= 'а' if @user.sex == '1' %>: <%= @user.rating %> чел.</p>
+          <p>Пригласил<%= 'а' if @user.sex == '1' %>: <%= @user.rating || 0 %> чел.</p>
         </div>
       </div>
       <div class='col-md-1 align-self-end'>

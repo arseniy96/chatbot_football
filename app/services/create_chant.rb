@@ -2,7 +2,9 @@ module Services
   class CreateChant
 
     def self.call(user, chant_params)
-      chant_text = Services::GenerateTextForChant.call(user.firstname)
+      country1 = chant_params[:country1]
+      country2 = chant_params[:country2]
+      chant_text = GenerateTextForChant.call(user.firstname)
       # main image
       img = Magick::Image.read(Rails.root + 'public/images/chant-w.jpg').first
       # download avatar and save to local file
@@ -15,10 +17,10 @@ module Services
       end
       avatar.resize_to_fit!(115, 115)
       # first country image
-      fcountry = Magick::Image.read(Rails.root + 'public/images/country/arg.png').first
+      fcountry = Magick::Image.read(Rails.root + "public/images/country/#{country1}.png").first
       fcountry.resize!(120, 90)
       # second country image
-      scountry = Magick::Image.read(Rails.root + 'public/images/country/ru.png').first
+      scountry = Magick::Image.read(Rails.root + "public/images/country/#{country2}.png").first
       scountry.resize!(120, 90)
 
       img.composite!(avatar, 1567, 510, Magick::OverCompositeOp)
@@ -38,7 +40,7 @@ module Services
       img.write(Rails.root + "public/#{img_name}.jpg")
       chant_image = File.open(Rails.root + "public/#{img_name}.jpg")
 
-      user.chants.create(text: 'Blah', image: chant_image, country1: chant_params[:country1], country2: chant_params[:country2])
+      user.chants.create(text: chant_text, image: chant_image, country1: country1, country2: country2)
     end
 
   end
