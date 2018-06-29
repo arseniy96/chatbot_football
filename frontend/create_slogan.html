@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width">
+    <meta property="og:title" content='Создай свою футбольную кричалку!'/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:description" content="Поделись с друзьями, выиграй призы, заработай рейтинг! "/>
+    <meta property="og:url" content="Ссылка на расшаренную страницу"/>
+    <meta property="og:image" content="http://kirillno.beget.tech/football/images/share_main.jpg"/>
+    <title>Создай свою футбольную кричалку!</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<header>
+    <div id='bg_parallax'>
+        <div data-depth="0.1"></div>
+    </div>
+    <div id="parallax">
+        <img src='images/footballer.png' class='footballer' data-depth="0.4" alt='Футболист'/>
+        <img src='images/ball.png' class='ball_header' data-depth="0.4" alt='Мяч'/>
+    </div>
+    <div class='container'>
+        <div class='row justify-content-end align-items-end'>
+            <div class='col-lg-4 create'>
+                <p>Создано в <a href='#'>ММА</a></p>
+            </div>
+        </div>
+    </div>
+</header>
+<section id='first' class='create_slogan_page'>
+    <div class='container'>
+        <div class='row'>
+            <div class='col-lg-7 main_person'>
+                <div class='photo_p'>
+                    <a href='#'>
+                        <img src='images/photo.jpg' alt='Photo'/>
+                        <div class='points'>1</div>
+                    </a>
+                </div>
+                <div class='text_p'>
+                    <h2><a href='#'>МАша иванова</a></h2>
+                    <p>Для создания твоей кричалки выбери 2 страны, за которые ты болеешь.</p>
+                </div>
+                <div class='slogan'>
+                    <pre>???</pre>
+                </div>
+            </div>
+            <form class='col-lg-5 offset-lg-0 col-10 offset-1 align-self-end create_s' name='choose_country'
+                  action='handler.php'>
+                <div class='country_container'>
+                    <input type='text' id='country1' name='country1' class='country_checkbox'/>
+                    <label class='country' for='country1'></label>
+                    <input type='text' id='country2' name='country2' class='country_checkbox'/>
+                    <label class='country' for='country2'></label>
+                </div>
+                <input type='text' name='email' class='create_slogan_email' placeholder="Введите ваш email"/>
+                <p class=''>Почти готово, жми на кнопку, расшарь на своей странице в Вконтакте и выиграй призы!</p>
+                <div>
+                    <div class='error_message'>
+                        <p>Не заполнены все поля и убедитесь, что вы согласились на обработку персональных данных</p>
+                    </div>
+                    <input type='submit' value='готово' class='ready'/>
+                </div>
+                <label>
+                    <input type='checkbox' name='agreement'/>
+                    Согласен на обработку персональных данных
+                </label>
+            </form>
+            <div class='choose_country col-lg-5'>
+                <p class='choose_title'>Выбери страну</p>
+                <div class='country_list'>
+                    <div class='clearfix'>
+                        <div class='country_item'>
+                            <a href='aust'>
+                                <img src='images/rus.png'/>
+                                <p>Австралия </p>
+                            </a>
+                        </div>
+                        <div class='country_item'>
+                            <a href='eng'>
+                                <img src='images/rus.png'/>
+                                <p>Англия</p>
+                            </a>
+                        </div>
+                        <div class='country_item'>
+                            <a href='arg'>
+                                <img src='images/rus.png'/>
+                                <p>Аргентина</p>
+                            </a>
+                        </div>
+                        <div class='country_item'>
+                            <a href='belg'>
+                                <img src='images/rus.png'/>
+                                <p>Бельгия</p>
+                            </a>
+                        </div>
+                        <div class='country_item'>
+                            <a href='bra'>
+                                <img src='images/rus.png'/>
+                                <p>Бразилия</p>
+                            </a>
+                        </div>
+                        <div class='country_item'>
+                            <a href='ger'>
+                                <img src='images/rus.png'/>
+                                <p>Германия</p>
+                            </a>
+                        </div>
+                        <div class='country_item'>
+                            <a href='dan'>
+                                <img src='images/rus.png'/>
+                                <p>Дания</p>
+                            </a>
+                        </div>
+                        <div class='country_item'>
+                            <a href='egy'>
+                                <img src='images/rus.png'/>
+                                <p>Египет</p>
+                            </a>
+                        </div>
+                        <div class='country_item'>
+                            <a href='isl'>
+                                <img src='images/rus.png'/>
+                                <p>Израиль</p>
+                            </a>
+                        </div>
+                        <div class='country_item'>
+                            <a href='spain'>
+                                <img src='images/rus.png'/>
+                                <p>Испания</p>
+                            </a>
+                        </div>
+                        <div class='country_item'>
+                            <a href='iran'>
+                                <img src='images/rus.png'/>
+                                <p>Иран</p>
+                            </a>
+                        </div>
+                        <div class='country_item'>
+                            <a href='col'>
+                                <img src='images/col.png'/>
+                                <p>Колумбия</p>
+                            </a>
+                        </div>
+                        <div class='country_item'>
+                            <a href='kosta'>
+                                <img src='images/rus.png'/>
+                                <p>Коста-Рика</p>
+                            </a>
+                        </div>
+                        <div class='country_item'>
+                            <a href='marok'>
+                                <img src='images/rus.png'/>
+                                <p>Марокко</p>
+                            </a>
+                        </div>
+                        <div class='country_item'>
+                            <a href='mex'>
+                                <img src='images/rus.png'/>
+                                <p>Мексика</p>
+                            </a>
+                        </div>
+                        <div class='country_item'>
+                            <a href='nig'>
+                                <img src='images/rus.png'/>
+                                <p>Нигерия</p>
+                            </a>
+                        </div>
+                        <div class='country_item'>
+                            <a href='pan'>
+                                <img src='images/rus.png'/>
+                                <p>Панама</p>
+                            </a>
+                        </div>
+                        <div class='country_item'>
+                            <a href='peru'>
+                                <img src='images/rus.png'/>
+                                <p>Перу</p>
+                            </a>
+                        </div>
+                        <div class='country_item'>
+                            <a href='pol'>
+                                <img src='images/rus.png'/>
+                                <p>Польша</p>
+                            </a>
+                        </div>
+                        <div class='country_item'>
+                            <a href='port'>
+                                <img src='images/rus.png'/>
+                                <p>Португалия</p>
+                            </a>
+                        </div>
+                        <div class='country_item'>
+                            <a href='ru'>
+                                <img src='images/rus.png'/>
+                                <p>Россия</p>
+                            </a>
+                        </div>
+                        <div class='country_item'>
+                            <a href='saudi'>
+                                <img src='images/rus.png'/>
+                                <p>Саудовская Аравия</p>
+                            </a>
+                        </div>
+                        <div class='country_item'>
+                            <a href='serb'>
+                                <img src='images/rus.png'/>
+                                <p>Сербия</p>
+                            </a>
+                        </div>
+                        <div class='country_item'>
+                            <a href='sineg'>
+                                <img src='images/rus.png'/>
+                                <p>Синегал</p>
+                            </a>
+                        </div>
+                        <div class='country_item'>
+                            <a href='tun'>
+                                <img src='images/rus.png'/>
+                                <p>Тунис</p>
+                            </a>
+                        </div>
+                        <div class='country_item'>
+                            <a href='switz'>
+                                <img src='images/rus.png'/>
+                                <p>Швейцария</p>
+                            </a>
+                        </div>
+                        <div class='country_item'>
+                            <a href='swe'>
+                                <img src='images/rus.png'/>
+                                <p>Швеция</p>
+                            </a>
+                        </div>
+                        <div class='country_item'>
+                            <a href='urug'>
+                                <img src='images/rus.png'/>
+                                <p>Уругвай</p>
+                            </a>
+                        </div>
+                        <div class='country_item'>
+                            <a href='fra'>
+                                <img src='images/rus.png'/>
+                                <p>Франция</p>
+                            </a>
+                        </div>
+                        <div class='country_item'>
+                            <a href='horv'>
+                                <img src='images/rus.png'/>
+                                <p>Хорватия</p>
+                            </a>
+                        </div>
+                        <div class='country_item'>
+                            <a href='korea'>
+                                <img src='images/rus.png'/>
+                                <p>Южная Корея</p>
+                            </a>
+                        </div>
+                        <div class='country_item'>
+                            <a href='jap'>
+                                <img src='images/jap.png'/>
+                                <p>Япония</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript" src='js/jQuery.min.js'></script>
+<script type="text/javascript" src='js/parallax.min.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+<script type="text/javascript" src='slick/slick.min.js'></script>
+<script type="text/javascript" src='js/script.js'></script>
+</body>
+</html>
