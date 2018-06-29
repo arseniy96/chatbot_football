@@ -22,12 +22,14 @@ $(document).ready(function() {
 	function get_country(elem){
 		country = $(elem).attr('href');
 		bg_country = $(elem).find('img').attr('src');
+        let check_box_id = $('.country_checkbox.active_label')[0].id;
+        document.getElementById('chant_' + check_box_id).value = country;
 	}
 
 	function set_country(){
 		$('.country.active_label').css('background-image', 'url(' + bg_country + ')');
 		$('.country_checkbox.active_label').attr('value', country);
-	}
+    }
 
 	function validate_input(){
 		var valide_input = true;
@@ -113,6 +115,7 @@ $(document).ready(function() {
 		}else{
 			error_message();
 			e.preventDefault();
+            $('#checkbox').removeAttr('checked');
 		}
 	});
 

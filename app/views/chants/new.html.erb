@@ -18,8 +18,8 @@
       </div>
       <div class="col-lg-5 offset-lg-0 col-10 offset-1 align-self-end create_s">
         <%= form_for [current_user, @chant] do |f| %>
-          <%= f.hidden_field :country1 %>
-          <%= f.hidden_field :country2 %>
+          <%= f.hidden_field :country1, required: true %>
+          <%= f.hidden_field :country2, required: true %>
           <div class='country_container'>
             <input type='text' id='country1' name='country1' class='country_checkbox'/>
             <label class='country' for='country1'></label>
@@ -31,10 +31,10 @@
             <div class='error_message'>
               <p>Не заполнены все поля и убедитесь, что вы согласились на обработку персональных данных</p>
             </div>
-            <%= f.submit 'Готово', class: 'ready disabled', disabled: true %>
+            <%= f.submit 'Готово', class: 'ready disabled', disabled: true, id: 'form-submit' %>
           </div>
           <label>
-            <input type='checkbox' name='agreement'/>
+            <input type='checkbox' name='agreement' id="checkbox" onclick="checkDisable()"/>
             Согласен на обработку персональных данных
           </label>
         <% end %>
@@ -57,3 +57,16 @@
     </div>
   </div>
 </section>
+
+<script>
+    function checkDisable() {
+        if ($('#checkbox').is(':checked')) {
+            $('#form-submit').removeAttr("disabled");
+            $('#form-submit').removeClass("disabled");
+        }
+        else {
+            $('#form-submit').attr("disabled", "disabled");
+            $('#form-submit').addClass("disabled");
+        }
+    }
+</script>
