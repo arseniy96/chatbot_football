@@ -1,0 +1,25 @@
+<section id='first'>
+  <div class='container'>
+    <h3 class='no_margin'>рейтинг пользователей</h3>
+    <div class='row rating_con'>
+      <% @users.each_with_index do |user, i| %>
+        <div class='col-lg-6 offset-lg-3 rating'>
+          <div>
+            <div class='photo_p'>
+              <a href="https://vk.com/id<%= user.uid %>" target="_blank">
+                <%= image_tag(user.avatar.url, alt: 'Photo') %>
+                <div class="points"><%= user.rating || 0 %></div>
+              </a>
+            </div>
+            <div class='text_p'>
+              <h2>
+                <a href="https://vk.com/id<%= user.uid %>" target="_blank"><%= user.full_name %></a>
+              </h2>
+            </div>
+            <div class='place'><%= i + 1 %></div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
