@@ -14,6 +14,16 @@
   font-style: normal;
 }
 
+.ready:disabled {
+  background-color: rgba(0, 104, 187, 0.7);
+}
+.ready:hover {
+  background-color: #0051a0;
+}
+.ready.disabled:hover {
+  background-color: rgba(0, 104, 187, 0.49);
+}
+
 header {
   width: 100%;
   height: 370px;
