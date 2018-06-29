@@ -1,12 +1,59 @@
-<%= form_for [current_user, @chant] do |f| %>
-  <p>
-    <%= f.label :country1 %><br/>
-    <%= f.text_field :country1 %>
-  </p>
-  <p>
-    <%= f.label :country2 %><br/>
-    <%= f.text_field :country2 %>
-  </p>
-
-  <%= f.submit 'Создать' %>
-<% end %>
+<section id='first' class='create_slogan_page'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-lg-7 main_person'>
+        <div class='photo_p'>
+          <%= link_to user_path(current_user) do %>
+            <%= image_tag(current_user.avatar.url, alt: 'Photo') %>
+            <div class="points"><%= current_user.rating || 0 %></div>
+          <% end %>
+        </div>
+        <div class='text_p'>
+          <h2><%= link_to current_user.full_name, user_path(current_user) %></h2>
+          <p>Для создания твоей кричалки выбери 2 страны, за которые ты болеешь.</p>
+        </div>
+        <div class='slogan'>
+          <pre>???</pre>
+        </div>
+      </div>
+      <div class="col-lg-5 offset-lg-0 col-10 offset-1 align-self-end create_s">
+        <%= form_for [current_user, @chant] do |f| %>
+          <%= f.hidden_field :country1 %>
+          <%= f.hidden_field :country2 %>
+          <div class='country_container'>
+            <input type='text' id='country1' name='country1' class='country_checkbox'/>
+            <label class='country' for='country1'></label>
+            <input type='text' id='country2' name='country2' class='country_checkbox'/>
+            <label class='country' for='country2'></label>
+          </div>
+          <p class=''>Почти готово, жми на кнопку, расшарь на своей странице в Вконтакте и выиграй призы!</p>
+          <div>
+            <div class='error_message'>
+              <p>Не заполнены все поля и убедитесь, что вы согласились на обработку персональных данных</p>
+            </div>
+            <%= f.submit 'Готово', class: 'ready disabled', disabled: true %>
+          </div>
+          <label>
+            <input type='checkbox' name='agreement'/>
+            Согласен на обработку персональных данных
+          </label>
+        <% end %>
+      </div>
+      <div class='choose_country col-lg-5'>
+        <p class='choose_title'>Выбери страну</p>
+        <div class='country_list'>
+          <div class='clearfix'>
+            <% @countries.each do |k, v| %>
+              <div class='country_item'>
+                <a href='<%= v %>'>
+                  <%= image_tag("country/#{v}.png") %>
+                  <p><%= k %></p>
+                </a>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

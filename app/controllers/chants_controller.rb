@@ -17,6 +17,7 @@ class ChantsController < ApplicationController
       redirect_to new_user_chant_path(current_user)
     end
     @chant = Chant.new
+    @countries = {'Австралия': 'aust', 'Англия': 'eng', 'Аргентина': 'arg', 'Бельгия': 'belg', 'Бразилия': 'bra', 'Германия': 'ger', 'Дания': 'dan', 'Египет': 'egy', 'Испания': 'spain', 'Иран': 'iran', 'Колумбия': 'col', 'Коста-Рика': 'kosta', 'Марокко': 'marok', 'Мексика': 'mex', 'Нигерия': 'nig', 'Панама': 'pan', 'Перу': 'peru', 'Польша': 'pol', 'Португалия': 'port', 'Россия': 'ru', 'Саудовская Аравия' => 'saudi', 'Сербия': 'serb', 'Синегал': 'sineg', 'Тунис': 'tun', 'Швейцария': 'switz', 'Швеция': 'swe', 'Уругвай': 'urug', 'Франция': 'fra', 'Хорватия': 'horv', 'Южная Корея': 'korea', 'Япония': 'jap'}
   end
 
   def create

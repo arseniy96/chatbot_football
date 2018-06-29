@@ -15,3 +15,4 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 
 Rails.application.config.assets.precompile += %w( *.js )
 Rails.application.config.assets.precompile += %w( *.fonts )
+Rails.application.config.assets.precompile += %w( *.images )
