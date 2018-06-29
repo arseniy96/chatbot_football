@@ -3,13 +3,15 @@
     <div class='row'>
       <div class='col-12 main_person'>
         <div class='photo_p'>
-          <%= link_to user_path(@user) do %>
+          <a href="https://vk.com/id<%= @user.uid %>" target="_blank">
             <%= image_tag(@user.avatar.url, alt: 'Photo') %>
             <div class="points"><%= @user.rating || 0 %></div>
-          <% end %>
+          </a>
         </div>
         <div class='text_p'>
-          <h2><%= link_to @user.full_name, user_path(@user) %></h2>
+          <h2>
+            <a href="https://vk.com/id<%= @user.uid %>" target="_blank"><%= @user.full_name %></a>
+          </h2>
           <p>Создал<%= 'а' if @user.sex == '1' %> свою кричалку к чемпионату мира по футболу.</p>
           <p>Пригласил<%= 'а' if @user.sex == '1' %>: <%= @user.rating %> чел.</p>
         </div>

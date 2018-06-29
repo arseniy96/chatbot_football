@@ -29,10 +29,10 @@
     <div class='users_row'>
       <% @new_users.each do |user| %>
         <div class='photo_p'>
-          <%= link_to user_path(user) do %>
+          <a href="https://vk.com/id<%= user.uid %>" target="_blank">
             <%= image_tag(user.avatar.url, alt: 'Photo') %>
             <div class="points"><%= user.rating || 0 %></div>
-          <% end %>
+          </a>
         </div>
       <% end %>
     </div>
@@ -59,20 +59,23 @@
         <div class='col-lg-6 offset-lg-3 rating'>
           <div>
             <div class='photo_p'>
-              <%= link_to user_path(user) do %>
+              <a href="https://vk.com/id<%= user.uid %>" target="_blank">
                 <%= image_tag(user.avatar.url, alt: 'Photo') %>
                 <div class="points"><%= user.rating || 0 %></div>
-              <% end %>
+              </a>
             </div>
             <div class='text_p'>
               <h2>
-                <%= link_to user.full_name, user_path(user) %>
+                <a href="https://vk.com/id<%= user.uid %>" target="_blank"><%= user.full_name %></a>
               </h2>
             </div>
             <div class='place'><%= i + 1 %></div>
           </div>
         </div>
       <% end %>
+    </div>
+    <div class='more'>
+      <%= link_to '●●●', users_path %>
     </div>
     <div class='ball_footer'>
       <img src='images/ball_footer.png' alt='Ball'/>
