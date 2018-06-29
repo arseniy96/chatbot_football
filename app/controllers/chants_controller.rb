@@ -13,6 +13,9 @@ class ChantsController < ApplicationController
   end
 
   def new
+    if params[:user_id].to_i != current_user.id
+      redirect_to new_user_chant_path(current_user)
+    end
     @chant = Chant.new
   end
 

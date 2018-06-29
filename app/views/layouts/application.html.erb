@@ -6,7 +6,7 @@
   <meta property="og:title" content="Создай свою футбольную кричалку!"/>
   <meta property="og:type" content="website"/>
   <meta property="og:description" content="Поделись с друзьями, выиграй призы, заработай рейтинг!"/>
-  <% if @chant %>
+  <% if @chant && request.fullpath != new_user_chant_path(current_user) %>
     <meta property="og:url" content="http://football.makemedia.agency<%= user_chant_path(@chant.user, @chant) %>"/>
     <meta property="og:image" content="<%= @chant.image.url %>"/>
   <% end %>
