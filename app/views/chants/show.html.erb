@@ -20,23 +20,32 @@
         <%= link_to 'Скачать', @chant.image.url, download: "chant_#{@chant.id}", class: 'download_link' %>
       </div>
       <div class='col-lg-8 slogan'>
-					<pre><%= @chant.text %></pre>
+        <pre><%= @chant.text %></pre>
       </div>
       <div class='col-lg-3 share align-self-end'>
-        <div class="a2a_kit a2a_kit_size_28 a2a_default_style"
-             data-a2a-title='Создай свою футбольную кричалку!'>
-          <a class="a2a_button_vk"><img src='/images/vk.png' alt='Вконтакте'/></a>
-          <a class="a2a_button_facebook"><img src='/images/fb.png' alt='Facebook'/></a>
-          <a class="a2a_button_twitter"><img src='/images/twi.png' alt='Twitter'/></a>
-          <a class="a2a_button_odnoklassniki"><img src='/images/ok.png' alt='Одноклассники'/></a>
-        </div>
-        <script async src="https://static.addtoany.com/menu/page.js"></script>
-        <div class='share_text'>
-          <p><span>Поделись</span></p>
-          <p>и выиграй призы</p>
-        </div>
-        <input type='text' id='clip_input'/>
-        <div class='copy' data-clipboard-target="#clip_input">copy</div>
+        <% if user_signed_in? && @user == current_user %>
+          <div class="a2a_kit a2a_kit_size_28 a2a_default_style"
+               data-a2a-title='Создай свою футбольную кричалку!'>
+            <a class="a2a_button_vk"><img src='/images/vk.png' alt='Вконтакте'/></a>
+            <a class="a2a_button_facebook"><img src='/images/fb.png' alt='Facebook'/></a>
+            <a class="a2a_button_twitter"><img src='/images/twi.png' alt='Twitter'/></a>
+            <a class="a2a_button_odnoklassniki"><img src='/images/ok.png' alt='Одноклассники'/></a>
+          </div>
+          <script async src="https://static.addtoany.com/menu/page.js"></script>
+          <div class='share_text'>
+            <p><span>Поделись</span></p>
+            <p>и выиграй призы</p>
+          </div>
+          <input type='text' id='clip_input'/>
+          <div class='copy' data-clipboard-target="#clip_input">copy</div>
+        <% else %>
+          <div class="share_text"><p>Создай свою кричалку!</p></div>
+          <% if user_signed_in? %>
+            <%= link_to 'Создать', new_user_chant_path(current_user), class: 'button' %>
+          <% else %>
+            <a class="button" href="https://oauth.vk.com/authorize?client_id=6609013&display=popup&redirect_uri=https%3A%2F%2Ffootball-chatbot.herokuapp.com%2Fcallback&response_type=code&scope=friends%2Cphotos%2Cgroups%2Cemail&v=5.80">Создать</a>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>

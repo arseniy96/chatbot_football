@@ -20,7 +20,6 @@
 
 <body>
 <%# link_to 'Выйти', destroy_admin_session_path, method: :delete if admin_signed_in? %>
-<%# link_to "Выйти", destroy_user_session_path, method: :delete if user_signed_in? %>
 <%# current_user.firstname if user_signed_in? %>
 <%# image_tag(current_user.avatar.url) if user_signed_in? %>
 
@@ -45,8 +44,10 @@
     </div>
   </div>
 </header>
+
 <%= yield %>
 
+<%= link_to "Выйти", destroy_user_session_path, method: :delete if user_signed_in? %>
 <%= javascript_include_tag 'custom/parallax.min' %>
 <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
 <script type="text/javascript" src='/slick/slick.min.js'></script>
